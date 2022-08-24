@@ -1,7 +1,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.flutter_unisat_data_client">
+    <uses-permission android:name="android.permission.INTERNET" />
    <application
-        android:label="flutter_unisat_data_client"
+        android:label="UniSat DataHub"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
