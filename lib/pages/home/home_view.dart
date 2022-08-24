@@ -232,7 +232,7 @@ class AppDrawer extends StatelessWidget {
                 ),
                 ListTile(
                   title: const Text(
-                    "Terms of Service",
+                    "Terms and Policy",
                     style: TextStyle(),
                   ),
                   trailing: IconButton(
