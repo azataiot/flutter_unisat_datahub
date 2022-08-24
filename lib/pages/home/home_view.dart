@@ -7,6 +7,7 @@ import 'package:intl/intl.dart';
 import 'package:unisat_data/pages/home/home_state.dart';
 import 'package:unisat_data/routes/app_routes.dart';
 import 'package:unisat_data/widgets/svg/azt_svg_logo.dart';
+import 'package:url_launcher/url_launcher.dart';
 import '../../data/enums/selected.dart';
 import '../../data/models/record.dart';
 import '../../i18n/i18n.dart';
@@ -214,6 +215,35 @@ class AppDrawer extends StatelessWidget {
                     );
                   }),
                 ),
+                Divider(),
+                ListTile(
+                  title: const Text(
+                    "About",
+                    style: TextStyle(),
+                  ),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.arrow_forward),
+                    onPressed: () async {
+                      await launchUrl(
+                        Uri.parse("https://unisat.kz/2021/"),
+                      );
+                    },
+                  ),
+                ),
+                ListTile(
+                  title: const Text(
+                    "Terms of Service",
+                    style: TextStyle(),
+                  ),
+                  trailing: IconButton(
+                    icon: const Icon(Icons.arrow_forward),
+                    onPressed: () async {
+                      await launchUrl(
+                        Uri.parse("https://unisat.kz/info/post/26/"),
+                      );
+                    },
+                  ),
+                ),
               ],
             ),
           )
@@ -334,40 +364,48 @@ class PhoneBody extends StatelessWidget {
             // charts title
             const SizedBox(height: 8.0),
             ListTile(
-                title: Row(
-              children: [
-                Text(state.records!.isNotEmpty ? "charts".tr : 'updating...'),
-                ChartIconButton(
-                  svgAsset: "assets/icons/temperature.svg",
-                  type: EnumCurrentSelected.temperature,
-                  state: state,
-                  controller: controller,
-                ),
-                ChartIconButton(
-                  svgAsset: "assets/icons/humidity.svg",
-                  type: EnumCurrentSelected.humidity,
-                  state: state,
-                  controller: controller,
-                ),
-                ChartIconButton(
-                  svgAsset: "assets/icons/pressure.svg",
-                  type: EnumCurrentSelected.pressure,
-                  state: state,
-                  controller: controller,
-                ),
-                ChartIconButton(
-                  svgAsset: "assets/icons/pm25.svg",
-                  type: EnumCurrentSelected.pm25,
-                  state: state,
-                  controller: controller,
-                ),
-                ChartIconButton(
-                  svgAsset: "assets/icons/pm10.svg",
-                  type: EnumCurrentSelected.pm10,
-                  state: state,
-                  controller: controller,
-                ),
-              ],
+                title: FittedBox(
+              fit: BoxFit.fitWidth,
+              child: Row(
+                children: [
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(state.records!.isNotEmpty
+                        ? "charts".tr
+                        : 'updating...'),
+                  ),
+                  ChartIconButton(
+                    svgAsset: "assets/icons/temperature.svg",
+                    type: EnumCurrentSelected.temperature,
+                    state: state,
+                    controller: controller,
+                  ),
+                  ChartIconButton(
+                    svgAsset: "assets/icons/humidity.svg",
+                    type: EnumCurrentSelected.humidity,
+                    state: state,
+                    controller: controller,
+                  ),
+                  ChartIconButton(
+                    svgAsset: "assets/icons/pressure.svg",
+                    type: EnumCurrentSelected.pressure,
+                    state: state,
+                    controller: controller,
+                  ),
+                  ChartIconButton(
+                    svgAsset: "assets/icons/pm25.svg",
+                    type: EnumCurrentSelected.pm25,
+                    state: state,
+                    controller: controller,
+                  ),
+                  ChartIconButton(
+                    svgAsset: "assets/icons/pm10.svg",
+                    type: EnumCurrentSelected.pm10,
+                    state: state,
+                    controller: controller,
+                  ),
+                ],
+              ),
             )),
             Row(
               children: [
