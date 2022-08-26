@@ -423,7 +423,7 @@ class PhoneBody extends StatelessWidget {
                   ? "Data (last 200 records)"
                   : 'updating...'),
               columns: [
-                DataColumn(label: Text("timestamp".tr)),
+                const DataColumn(label: Text("time")),
                 DataColumn(label: Text("temperature".tr)),
                 DataColumn(label: Text("humidity".tr)),
                 DataColumn(label: Text("pressure".tr)),
@@ -462,7 +462,7 @@ class Footer extends StatelessWidget {
 }
 
 class DesktopBody extends StatelessWidget {
-  DesktopBody({
+  const DesktopBody({
     Key? key,
     required this.state,
     required this.controller,
