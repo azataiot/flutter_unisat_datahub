@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import '../../data/models/collection.dart';
@@ -16,6 +18,10 @@ class SelectionController extends GetxController {
   @override
   Future<void> onInit() async {
     super.onInit();
+    // check internet connectivity.
+    bool connectivity = await checkConnectivity();
+    state.connectivity = connectivity;
+    update();
     // state.errorMsg = "[Azt::SelectionController] onInit called";
     logger.d("[Azt::SelectionController] onInit called");
     logger.d("[Azt::SelectionController] getting collections");
@@ -59,5 +65,20 @@ class SelectionController extends GetxController {
       logger.w("[Azt::ApiService] collections is null");
       return null;
     }
+  }
+
+  Future<bool> checkConnectivity() async {
+    bool status = false;
+    try {
+      final result = await InternetAddress.lookup("data-api.unisat.kz");
+      if (result.isNotEmpty && result[0].rawAddress.isNotEmpty) {
+        status = true;
+      }
+    } on SocketException catch (_) {
+      logger.w("InternetAddress.lookup failed, App is offline");
+      status = false;
+    }
+
+    return status;
   }
 }

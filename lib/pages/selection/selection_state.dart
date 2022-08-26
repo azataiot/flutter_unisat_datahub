@@ -6,6 +6,8 @@ class SelectionState {
   bool? isConnecting;
   bool? isError;
   String? errorMsg;
+  bool? connectivity;
+
   SelectionState() {
     ///Initialize variables
     collections = [];
@@ -13,5 +15,6 @@ class SelectionState {
     isConnecting = false;
     isError = false;
     errorMsg = "";
+    connectivity = false;
   }
 }
