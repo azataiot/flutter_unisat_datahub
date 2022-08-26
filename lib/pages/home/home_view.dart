@@ -919,14 +919,18 @@ class HomeStatus extends StatelessWidget {
         children: [
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Text((statusType == HomeStatusType.error)
-                ? "page_select_505".tr
-                : (statusType == HomeStatusType.loading)
-                    ? "page_select_loading".tr
-                    : "page_select_connecting".tr),
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Text((statusType == HomeStatusType.error)
+                  ? "page_select_505".tr
+                  : (statusType == HomeStatusType.loading)
+                      ? "page_select_loading".tr
+                      : "page_select_connecting".tr),
+            ),
           ),
           statusType == HomeStatusType.error
-              ? SizedBox(
+              ? Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
                   child: ElevatedButton(
                     onPressed: () async {
                       Get.offAllNamed(AppRoutes.selection);

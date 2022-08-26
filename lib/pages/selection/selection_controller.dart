@@ -67,6 +67,30 @@ class SelectionController extends GetxController {
     }
   }
 
+  reTry() async {
+    bool connectivity = await checkConnectivity();
+    if (connectivity) {
+      state.isError = false;
+      update();
+      var collections = await getCollections();
+      state.isLoading = false;
+      state.isConnecting = true;
+      update();
+      if (collections != null) {
+        state.collections = collections;
+        state.isConnecting = false;
+        logger.d(
+            "[Azt::SelectionController] onInit collections length on state ${state.collections!.length}");
+        update();
+      } else {
+        logger.w("Getting records failed!");
+        state.isConnecting = false;
+        state.isError = true;
+        update();
+      }
+    }
+  }
+
   Future<bool> checkConnectivity() async {
     bool status = false;
     try {

@@ -137,21 +137,27 @@ class SelectionStatus extends StatelessWidget {
           Text(state.errorMsg!),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16),
-            child: Center(
-              child: Text((statusType == HomeStatusType.error)
-                  ? "page_select_505".tr
-                  : (statusType == HomeStatusType.loading)
-                      ? "page_select_loading".tr
-                      : "page_select_connecting".tr),
+            child: Container(
+              margin: const EdgeInsets.symmetric(horizontal: 16),
+              child: Center(
+                child: Text((statusType == HomeStatusType.error)
+                    ? "page_select_505".tr
+                    : (statusType == HomeStatusType.loading)
+                        ? "page_select_loading".tr
+                        : "page_select_connecting".tr),
+              ),
             ),
           ),
           statusType == HomeStatusType.error
-              ? Center(
-                  child: TextButton(
-                      onPressed: () async {
-                        await controller.getCollections();
-                      },
-                      child: const Text("Retry")),
+              ? Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 16),
+                  child: Center(
+                    child: ElevatedButton(
+                        onPressed: () async {
+                          await controller.reTry();
+                        },
+                        child: const Text("Retry")),
+                  ),
                 )
               : const CircularProgressIndicator(),
         ],
