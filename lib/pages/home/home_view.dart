@@ -982,7 +982,7 @@ class TableDataSource extends DataTableSource {
   DataRow? getRow(int index) {
     return DataRow(cells: [
       DataCell(Text(
-        DateFormat.yMd().add_jms().format(DateTime.fromMillisecondsSinceEpoch(
+        DateFormat.Hms().format(DateTime.fromMillisecondsSinceEpoch(
             state.records![index].timestamp! * 1000)),
       )),
       DataCell(
