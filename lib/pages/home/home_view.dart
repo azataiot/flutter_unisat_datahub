@@ -333,7 +333,7 @@ class PhoneBody extends StatelessWidget {
                   data: state.records!.isNotEmpty
                       ? state.records![0].pressure.toString()
                       : 'updating...',
-                  unit: "kPa",
+                  unit: "hPa",
                 ),
                 CardOverView(
                   width: Get.width / 2 - 16,

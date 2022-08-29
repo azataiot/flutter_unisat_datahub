@@ -57,9 +57,9 @@ class SelectionController extends GetxController {
     logger.i('get collections called!');
     dynamic collections = await repository.getCollections();
     if (collections != null) {
-      state.errorMsg = "Collection is not null";
       update();
       List<Collection> collectionsList = List.from(collections);
+      collectionsList.removeWhere((element) => element.id == "null");
       return collectionsList;
     } else {
       logger.w("[Azt::ApiService] collections is null");

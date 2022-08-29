@@ -167,6 +167,7 @@ class HomeController extends GetxController {
     dynamic collections = await repository.getCollections();
     if (collections != null) {
       List<Collection> collectionsList = List.from(collections);
+      collectionsList.removeWhere((element) => element.id == "null");
       state.collections = collectionsList;
       update();
     } else {
